@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './index.css';
-import Home from './pages/Home';
+import BookList from './pages/BookList';
 import Categories from './pages/Categories';
 import SharedLayout from './components/SharedLayout';
 import Error from './pages/Error';
@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
+        <Route index element={<BookList />} />
         <Route path="categories" element={<Categories />} />
         <Route path="*" element={<Error />} />
       </Route>
