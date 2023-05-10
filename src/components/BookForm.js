@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addBook } from '../redux/books/BookSlice';
 
-// eslint-disable-next-line react/prop-types
-const BookForm = ({ setBooks }) => {
+const BookForm = () => {
+  const { books } = useSelector((store) => store.book);
+  const dispatch = useDispatch();
   const [book, setBook] = useState('');
   const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (book.trim() && author.trim()) {
-      setBooks((prevState) => [...prevState, { title: book, author, id: 4 }]);
+    if (book.trim() && author.trim() && category.trim()) {
+      dispatch(
+        addBook({
+          id: `item${books.length + 1}`,
+          title: book,
+          author,
+          category,
+        }),
+      );
       setBook('');
       setAuthor('');
+      setCategory('');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <h2>Add new Book</h2>
       <input
         type="text"
@@ -29,7 +41,15 @@ const BookForm = ({ setBooks }) => {
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
       />
-      <button type="submit">Add book</button>
+      <input
+        type="text"
+        placeholder="Category"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      />
+      <button type="submit" onClick={handleSubmit}>
+        Add book
+      </button>
     </form>
   );
 };

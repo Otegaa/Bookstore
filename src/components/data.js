@@ -1,18 +1,21 @@
 const booksList = [
   {
-    author: 'Jordan Moore',
-    title: 'Interesting Facts For Curious Minds',
-    id: 1,
+    id: 'item1',
+    title: 'The Great Gatsby',
+    author: 'John Smith',
+    category: 'Fiction',
   },
   {
-    author: 'James Clear',
-    title: 'Atomic Habits',
-    id: 2,
+    id: 'item2',
+    title: 'Anna Karenina',
+    author: 'Leo Tolstoy',
+    category: 'Fiction',
   },
   {
-    author: 'Stephen King',
-    title: 'Fairy Tale',
-    id: 3,
+    id: 'item3',
+    title: 'The Selfish Gene',
+    author: 'Richard Dawkins',
+    category: 'Nonfiction',
   },
 ];
 
