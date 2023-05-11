@@ -10,8 +10,24 @@ export const fetchBooks = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const res = await axios.get(`${baseUrl}${appId}/books`);
+      const data = Object.keys(res.data).map((key) => ({
+        item_id: key,
+        ...res.data[key][0],
+      }));
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const postBooks = createAsyncThunk(
+  'book/postBooks',
+  async (initialBook, thunkAPI) => {
+    try {
+      console.log(initialBook);
+      const res = await axios.post(`${baseUrl}${appId}/books`, initialBook);
       const data = await res.data;
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -50,6 +66,9 @@ const bookSlice = createSlice({
         state.loading = false;
         state.books = [];
         state.error = action.error.message;
+      })
+      .addCase(postBooks.fulfilled, (state, { payload }) => {
+        state.books = { ...state.books, payload };
       });
   },
 });

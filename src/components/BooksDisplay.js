@@ -4,7 +4,8 @@ import { fetchBooks } from '../redux/books/BookSlice';
 
 const BooksDisplay = () => {
   const { books, loading, error } = useSelector((store) => store.book);
-  console.log(books);
+  // const keys = Object.entries(books);
+  // console.log(books);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,14 +15,18 @@ const BooksDisplay = () => {
   return (
     <>
       <div>
-        <h2>Books</h2>
         {loading && <div>Loading...</div>}
-        {!loading && error ? <div>Error: error</div> : null}
+        {!loading && error ? (
+          <div>
+            Error:
+            {error}
+          </div>
+        ) : null}
         {!loading && books.length > 0 ? (
           <ul>
             {books.map((book) => {
               const {
-                id, title, author, category,
+                item_id: id, title, author, category,
               } = book;
               return (
                 <li style={{ marginBottom: '2rem' }} key={id}>
