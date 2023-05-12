@@ -1,13 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchBooks, removeBooks, deleteBooks } from '../redux/books/BookSlice';
+import {
+  fetchBooksFromAPI,
+  removeBooksFromUI,
+  deleteBooksFromAPI,
+} from '../redux/books/BookSlice';
 
 const BooksDisplay = () => {
   const { books, loading, error } = useSelector((store) => store.book);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchBooks());
+    dispatch(fetchBooksFromAPI());
   }, [dispatch]);
 
   return (
@@ -30,8 +34,8 @@ const BooksDisplay = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    dispatch(removeBooks(book.item_id));
-                    dispatch(deleteBooks(book.item_id));
+                    dispatch(removeBooksFromUI(book.item_id));
+                    dispatch(deleteBooksFromAPI(book.item_id));
                   }}
                 >
                   Delete
