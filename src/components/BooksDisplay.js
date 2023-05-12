@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import {
   fetchBooksFromAPI,
-  removeBooksFromUI,
   deleteBooksFromAPI,
 } from '../redux/books/BookSlice';
 
@@ -34,7 +33,6 @@ const BooksDisplay = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    dispatch(removeBooksFromUI(book.item_id));
                     dispatch(deleteBooksFromAPI(book.item_id));
                   }}
                 >

@@ -24,6 +24,8 @@ export const fetchBooksFromAPI = createAsyncThunk(
 export const postBooksToAPI = createAsyncThunk(
   'book/postBooks',
   async (book, thunkAPI) => {
+    // eslint-disable-next-line no-use-before-define
+    thunkAPI.dispatch(addBookToUI(book));
     try {
       const res = await axios.post(`${baseUrl}${appId}/books`, book);
       const data = await res.data;
@@ -37,6 +39,8 @@ export const postBooksToAPI = createAsyncThunk(
 export const deleteBooksFromAPI = createAsyncThunk(
   'book/deleteBooks',
   async (bookId, thunkAPI) => {
+    // eslint-disable-next-line no-use-before-define
+    thunkAPI.dispatch(removeBooksFromUI(bookId));
     try {
       const res = axios.delete(`${baseUrl}${appId}/books/${bookId}
      `);

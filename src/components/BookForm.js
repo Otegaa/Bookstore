@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBookToUI, postBooksToAPI } from '../redux/books/BookSlice';
+import { postBooksToAPI } from '../redux/books/BookSlice';
 
 const BookForm = () => {
   const { books, loading, error } = useSelector((store) => store.book);
@@ -18,7 +18,6 @@ const BookForm = () => {
         author,
         category,
       };
-      dispatch(addBookToUI(newBook));
       dispatch(postBooksToAPI(newBook));
       setBook('');
       setAuthor('');
