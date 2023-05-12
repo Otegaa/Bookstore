@@ -25,7 +25,6 @@ export const postBooks = createAsyncThunk(
   'book/postBooks',
   async (book, thunkAPI) => {
     try {
-      console.log(book);
       const res = await axios.post(`${baseUrl}${appId}/books`, book);
       const data = await res.data;
       return data;

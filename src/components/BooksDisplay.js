@@ -4,7 +4,6 @@ import { fetchBooks, removeBooks, deleteBooks } from '../redux/books/BookSlice';
 
 const BooksDisplay = () => {
   const { books, loading, error } = useSelector((store) => store.book);
-  console.log(books);
   const dispatch = useDispatch();
 
   useEffect(() => {
