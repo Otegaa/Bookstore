@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBook } from '../redux/books/BookSlice';
+import { addBookToUI, postBooksToAPI } from '../redux/books/BookSlice';
 
 const BookForm = () => {
-  const { books } = useSelector((store) => store.book);
+  const { books, loading, error } = useSelector((store) => store.book);
   const dispatch = useDispatch();
   const [book, setBook] = useState('');
   const [author, setAuthor] = useState('');
@@ -11,15 +11,15 @@ const BookForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (book.trim() && author.trim() && category.trim()) {
-      dispatch(
-        addBook({
-          id: `item${books.length + 1}`,
-          title: book,
-          author,
-          category,
-        }),
-      );
+    if (book.trim() && author.trim() && category.trim() && !loading && !error) {
+      const newBook = {
+        item_id: `item${books.length + 1}`,
+        title: book,
+        author,
+        category,
+      };
+      dispatch(addBookToUI(newBook));
+      dispatch(postBooksToAPI(newBook));
       setBook('');
       setAuthor('');
       setCategory('');
