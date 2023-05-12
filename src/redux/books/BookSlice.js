@@ -23,10 +23,24 @@ export const fetchBooks = createAsyncThunk(
 
 export const postBooks = createAsyncThunk(
   'book/postBooks',
-  async (initialBook, thunkAPI) => {
+  async (book, thunkAPI) => {
     try {
-      console.log(initialBook);
-      const res = await axios.post(`${baseUrl}${appId}/books`, initialBook);
+      console.log(book);
+      const res = await axios.post(`${baseUrl}${appId}/books`, book);
+      const data = await res.data;
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteBooks = createAsyncThunk(
+  'book/deleteBooks',
+  async (bookId, thunkAPI) => {
+    try {
+      const res = axios.delete(`${baseUrl}${appId}/books/${bookId}
+     `);
       const data = await res.data;
       return data;
     } catch (error) {
@@ -49,7 +63,7 @@ const bookSlice = createSlice({
       state.books = [...state.books, payload];
     },
     removeBooks: (state, { payload }) => {
-      state.books = state.books.filter((book) => book.id !== payload);
+      state.books = state.books.filter((book) => book.item_id !== payload);
     },
   },
   extraReducers: (builder) => {
@@ -66,9 +80,6 @@ const bookSlice = createSlice({
         state.loading = false;
         state.books = [];
         state.error = action.error.message;
-      })
-      .addCase(postBooks.fulfilled, (state, { payload }) => {
-        state.books = { ...state.books, payload };
       });
   },
 });

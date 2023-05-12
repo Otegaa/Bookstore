@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postBooks } from '../redux/books/BookSlice';
+import { addBook, postBooks } from '../redux/books/BookSlice';
 
 const BookForm = () => {
   const { books, loading, error } = useSelector((store) => store.book);
@@ -12,14 +12,14 @@ const BookForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (book.trim() && author.trim() && category.trim() && !loading && !error) {
-      dispatch(
-        postBooks({
-          item_id: `item${books.length + 1}`,
-          title: book,
-          author,
-          category,
-        }),
-      );
+      const newBook = {
+        item_id: `item${books.length + 1}`,
+        title: book,
+        author,
+        category,
+      };
+      dispatch(addBook(newBook));
+      dispatch(postBooks(newBook));
       setBook('');
       setAuthor('');
       setCategory('');

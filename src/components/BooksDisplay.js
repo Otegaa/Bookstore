@@ -1,16 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchBooks } from '../redux/books/BookSlice';
+import { fetchBooks, removeBooks, deleteBooks } from '../redux/books/BookSlice';
 
 const BooksDisplay = () => {
   const { books, loading, error } = useSelector((store) => store.book);
-  // const keys = Object.entries(books);
-  // console.log(books);
+  console.log(books);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBooks());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -24,19 +23,22 @@ const BooksDisplay = () => {
         ) : null}
         {!loading && books.length > 0 ? (
           <ul>
-            {books.map((book) => {
-              const {
-                item_id: id, title, author, category,
-              } = book;
-              return (
-                <li style={{ marginBottom: '2rem' }} key={id}>
-                  <h2 style={{ fontSize: '2.5rem' }}>{title}</h2>
-                  <h4 style={{ fontSize: '2rem' }}>{author}</h4>
-                  <h4 style={{ fontSize: '2rem' }}>{category}</h4>
-                  <button type="button">Delete</button>
-                </li>
-              );
-            })}
+            {books.map((book) => (
+              <li style={{ marginBottom: '2rem' }} key={book.item_id}>
+                <h2 style={{ fontSize: '2.5rem' }}>{book.title}</h2>
+                <h4 style={{ fontSize: '2rem' }}>{book.author}</h4>
+                <h4 style={{ fontSize: '2rem' }}>{book.category}</h4>
+                <button
+                  type="button"
+                  onClick={() => {
+                    dispatch(removeBooks(book.item_id));
+                    dispatch(deleteBooks(book.item_id));
+                  }}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
           </ul>
         ) : null}
       </div>
