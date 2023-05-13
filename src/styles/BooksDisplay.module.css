@@ -43,7 +43,6 @@
   font-weight: 700;
   font-size: 3rem;
   font-family: 'Roboto Slab', serif;
-  font-weight: 700;
 }
 
 .author {
@@ -51,7 +50,6 @@
   font-weight: 300;
   font-size: 1.5rem;
   font-family: 'Roboto Slab', serif;
-  font-weight: 300;
 }
 
 .button {
@@ -121,6 +119,7 @@
   font-weight: 600;
   color: #121212;
 }
+
 .text {
   font-size: 1.5rem;
   color: grey;
