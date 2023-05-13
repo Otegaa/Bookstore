@@ -12,7 +12,7 @@ const Categories = () => {
     }
   }, [categories.length]);
 
-  return <h2>{status}</h2>;
+  return <h2 className="categories">{status}</h2>;
 };
 
 export default Categories;

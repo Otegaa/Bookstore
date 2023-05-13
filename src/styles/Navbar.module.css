@@ -1,0 +1,44 @@
+.navbar {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  background-color: #fff;
+  padding: 2rem 6.25rem;
+}
+
+.heading {
+  font-size: 3rem;
+  color: #0290ff;
+  font-weight: 700;
+}
+
+.book {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+}
+
+.category {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+  margin-right: auto;
+  transition: all 0.3s;
+}
+
+.book:hover,
+.category:hover {
+  scale: 1.04;
+}
+
+.icon {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #e8e8e8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
