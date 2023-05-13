@@ -59,8 +59,18 @@ const BooksDisplay = () => {
                   </div>
                   <div className={styles.progress}>
                     <div className={styles.bar} />
-                    <h2>50%</h2>
-                    <p>Completed</p>
+                    <div>
+                      <p className={styles.number}>50%</p>
+                      <p className={styles.text}>Completed</p>
+                    </div>
+                    <span className={styles.span2} />
+                  </div>
+                  <div className={styles.chapter}>
+                    <p className={styles.current}>Current chapter</p>
+                    <p className={styles.currentNumber}>Chapter 17</p>
+                    <button type="button" className={styles.update}>
+                      update progress
+                    </button>
                   </div>
                 </li>
               </ul>
