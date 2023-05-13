@@ -36,3 +36,10 @@ body {
   margin: 15rem 0;
   background-color: #fafafa;
 }
+
+.categories {
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+  background-color: #fff;
+}

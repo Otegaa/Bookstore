@@ -69,6 +69,14 @@
   font-weight: 300;
   font-size: 1.5rem;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.comments:hover,
+.remove:hover,
+.edit:hover {
+  color: #0290ff;
+  scale: 1.04;
 }
 
 .span {
@@ -154,4 +162,10 @@
   text-transform: uppercase;
   padding: 1rem 2.5rem;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.update:hover {
+  background-color: #4386bf;
+  scale: 1.04;
 }

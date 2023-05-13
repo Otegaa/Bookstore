@@ -25,6 +25,12 @@
   letter-spacing: 0.1rem;
   font-weight: 300;
   margin-right: auto;
+  transition: all 0.3s;
+}
+
+.book:hover,
+.category:hover {
+  scale: 1.04;
 }
 
 .icon {
